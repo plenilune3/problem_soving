@@ -50,7 +50,6 @@ def bfs(rx, ry, bx, by, visited, board):
     return -1
 
 
-
 def solution():
     N, M = map(int, input().split())
     board = [list(input()) for i in range(N)]
