@@ -2,18 +2,21 @@ from collections import deque
 
 
 def move(W, H, x, y, dx, dy, queue, visited, board):
-    temp = visited[x][y]
+    nx, ny = x + dx, y + dy
 
-    while 0 <= x + dx < H and 0 <= y + dy < W and board[x + dx][y + dy] != '*':
-        if visited[x + dx][y + dy] == -1:
-            visited[x + dx][y + dy] = temp + 1
-            queue.append((x + dx, y + dy))
-        x += dx
-        y += dy
+    while 0 <= nx < H and 0 <= ny < W and board[nx][ny] != '*':
+        # 이미 지나온 경로지만 거울이 더 필요하면 넘어감
+        if visited[nx][ny] < visited[x][y] + 1:
+            break
+
+        visited[nx][ny] = visited[x][y] + 1
+        queue.append((nx, ny))
+        nx = nx + dx
+        ny = ny + dy
 
 
 def bfs(W, H, x, y, fx, fy, board):
-    visited = [[-1 for w in range(W)] for h in range(H)]
+    visited = [[float('inf') for w in range(W)] for h in range(H)]
     queue = deque([(x, y)])
     visited[x][y] = 0
     dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
