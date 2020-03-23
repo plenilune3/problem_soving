@@ -13,6 +13,13 @@ def solution(N, K, coins):
 
 
 N, K = map(int, input().split())
-coins = [int(input()) for i in range(N)]
+coins = set()
+
+for n in range(N):
+    value = int(input())
+    if value <= K:
+        coins.add(value)
+
+coins = sorted(coins)
 
 solution(N, K, coins)
