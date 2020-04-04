@@ -5,7 +5,7 @@ sum_max = float('-inf')
 sum_min = float('inf')
 
 
-def dfs(depth, N, numbers, result, addition, subtraction, multiplcation, division):
+def dfs(depth, N, numbers, result, addition, subtraction, multiplication, division):
     global sum_max, sum_min
 
     if depth == N:
@@ -13,14 +13,14 @@ def dfs(depth, N, numbers, result, addition, subtraction, multiplcation, divisio
         sum_min = min(sum_min, result)
     else:
         if addition:
-            dfs(depth+1, N, numbers, result+numbers[depth], addition-1, subtraction, multiplcation, division)
+            dfs(depth + 1, N, numbers, result + numbers[depth], addition - 1, subtraction, multiplication, division)
         if subtraction:
-            dfs(depth+1, N, numbers, result-numbers[depth], addition, subtraction-1, multiplcation, division)
-        if multiplcation:
-            dfs(depth+1, N, numbers, result*numbers[depth], addition, subtraction, multiplcation-1, division)
+            dfs(depth + 1, N, numbers, result - numbers[depth], addition, subtraction - 1, multiplication, division)
+        if multiplication:
+            dfs(depth + 1, N, numbers, result * numbers[depth], addition, subtraction, multiplication - 1, division)
         if division:
             temp = result // numbers[depth] if result > 0 else -(-result // numbers[depth])
-            dfs(depth+1, N, numbers, temp, addition, subtraction, multiplcation, division-1)
+            dfs(depth + 1, N, numbers, temp, addition, subtraction, multiplication, division - 1)
 
 
 def solution(N, numbers, operator_count):
